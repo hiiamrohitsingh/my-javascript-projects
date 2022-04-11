@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Row Tags Silder</title>
+   <style>
+      * {
+         box-sizing: border-box;
+      }
+
+      *::after,
+      *::before {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, Helvetica, sans-serif;
+         z-index: 10000000;
+      }
+
+      .slider {
+         width: 90%;
+         margin: 50px auto;
+         position: relative;
+         background-color: lavender;
+         user-select: none;
+      }
+
+      /* silder buttons */
+
+      .silder-control-btns {
+         display: inline-block;
+         background-color: darkviolet;
+         color: #ffffff;
+         border: 0;
+         font-size: 1.5em;
+      }
+
+      .silder-control-btns:first-child {
+         padding-top: 12px;
+         padding-bottom: 12px;
+         padding-left: 10px;
+         padding-right: 10px;
+         border-top-right-radius: 30px;
+         border-bottom-right-radius: 30px;
+         box-shadow: 2px 0px 1px 1px blue;
+         position: absolute;
+         left: 0;
+         top: 0px;
+         z-index: 1;
+      }
+
+      .silder-control-btns:last-child {
+         padding-top: 12px;
+         padding-bottom: 12px;
+         padding-left: 10px;
+         padding-right: 10px;
+         border-top-left-radius: 30px;
+         border-bottom-left-radius: 30px;
+         box-shadow: -2px 0px 1px 1px blue;
+         position: absolute;
+         right: 0;
+         top: 0px;
+         z-index: 1;
+      }
+
+      .tags-container {
+         width: 93%;
+         margin: auto;
+         padding: 10px 0px;
+         white-space: nowrap;
+         overflow-x: scroll;
+      }
+
+      .tags-container::-webkit-scrollbar {
+         display: none;
+      }
+
+      .tag {
+         display: inline-block;
+         background-color: slateblue;
+         color: #ffffff;
+         font-size: 1.2em;
+         margin: 0 5px;
+         padding: 5px 20px;
+         border-radius: 50px;
+         transition: all 0.6s;
+      }
+
+      .tag:hover {
+         box-shadow: 0 0 5px 1px blue;
+         background-color: #ffffff;
+         color: blue;
+         transition: all 0.6s;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="slider" id="silder">
+      <button class="silder-control-btns" id="PreBtn">&lt;</button>
+      <div class="tags-container" id="tag_container">
+         <span class="tag">Tag</span>
+         <span class="tag">Lorem, ipsum.</span><span class="tag">Ratione, at.</span><span class="tag">Reiciendis,
+            reprehenderit!</span><span class="tag">Enim, sed?</span><span class="tag">Sapiente, cupiditate.</span><span
+            class="tag">Eveniet, praesentium.</span><span class="tag">Facere, perferendis?</span><span class="tag">Ad,
+            iste.</span><span class="tag">Ullam, iure?</span><span class="tag">Voluptatum, repellendus.</span><span
+            class="tag">Laudantium, exercitationem!</span><span class="tag">Laborum, porro!</span><span
+            class="tag">Mollitia, aut.</span><span class="tag">Repellat, perferendis!</span><span class="tag">Animi,
+            cum.</span><span class="tag">Ratione, quibusdam!</span><span class="tag">Laboriosam, rerum.</span><span
+            class="tag">Hic, minus.</span><span class="tag">Quaerat, dolorum.</span><span class="tag">Quos,
+            veritatis.</span><span class="tag">Voluptate, incidunt.</span><span class="tag">Esse, sequi!</span><span
+            class="tag">Fugit, doloremque?</span><span class="tag">Mollitia, dolorem.</span><span class="tag">Porro,
+            ex!</span><span class="tag">Velit, nam.</span><span class="tag">Tempore, nisi?</span><span
+            class="tag">Eligendi, a?</span><span class="tag">Non, omnis!</span><span class="tag">Eius,
+            temporibus.</span><span class="tag">Perspiciatis, quisquam.</span><span class="tag">Veniam,
+            vero!</span><span class="tag">Corporis, maxime.</span><span class="tag">Architecto, mollitia.</span><span
+            class="tag">Veniam, qui.</span><span class="tag">Sequi, laborum.</span><span class="tag">Reiciendis,
+            odio!</span><span class="tag">Quis, facilis.</span><span class="tag">Non, quam?</span><span class="tag">Cum,
+            sunt!</span><span class="tag">Maiores, incidunt.</span><span class="tag">Provident, sapiente!</span><span
+            class="tag">Labore, optio!</span><span class="tag">Ea, inventore.</span><span class="tag">Officia,
+            aliquid.</span><span class="tag">Nulla, ullam!</span><span class="tag">Quos, corporis!</span><span
+            class="tag">Animi, doloribus!</span><span class="tag">Quo, sint.</span><span class="tag">Deleniti,
+            eligendi?</span>
+      </div>
+      <button class="silder-control-btns" id="NextBtn">&gt;</button>
+   </div>
+
+   <script>
+      let tag_container = document.getElementById("tag_container"); // silder -> tag_container
+      let silder_Pre_btn = document.getElementById("PreBtn"); // silder -> btn1
+      let silder_Next_btn = document.getElementById("NextBtn"); // silder -> btn2
+
+      silder_Pre_btn.addEventListener("click", function () {
+         tag_container.scrollBy(-tag_container.clientWidth, 0);
+      });
+
+      silder_Next_btn.addEventListener("click", function () {
+         tag_container.scrollBy(tag_container.clientWidth, 0);
+      });
+
+      // tag_container.addEventListener("wheel", function () {
+      //    tag_container.scrollBy(tag_container.clientWidth, 0);
+      // });
+
+      tag_container.addEventListener("mousewheel", function (){
+         tag_container.scrollBy(tag_container.clientWidth, 0);
+      });
+   </script>
+</body>
+
+</html>
