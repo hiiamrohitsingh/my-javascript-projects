@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>CSS Box Shadow Generator</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <style>
+      body {
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #box {
+         width: 250px;
+         height: 250px;
+         background-color: #f8f8f8;
+         box-shadow: 10px 10px 0 0 #333333;
+         /* box-shadow:x,y,b,s,c; */
+      }
+
+      .output-box:hover {
+         background-color: transparent !important;
+         color: #0d6efd;
+      }
+   </style>
+</head>
+
+<body>  
+
+   <div class="container my-5 py-3 border border-dark">
+      <div class="row">
+         <div class="col-md-8">
+            <div class="card border border-dark" style="padding:100px 0">
+               <div class="box-shadow-container d-flex justify-content-center py-5">
+                  <div id="box"></div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="card border border-dark p-2">
+               <div class="d-flex justify-content-between">
+                  <h6><span class="badge bg-primary">Outset</span></h6>
+                  <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" id="box-inset-shadow">
+                  </div>
+                  <h6><span class="badge bg-primary">Inset</span></h6>
+               </div>
+               <hr />
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6>Horizontal Length</h6>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                     <button type="button" class="btn btn-sm btn-primary">-</button>
+                     <span id="box-horizontal-shadow-output"
+                        class="btn output-box btn-sm btn-outline-primary">Horizontal</span>
+                     <button type="button" class="btn btn-sm btn-primary">+</button>
+                  </div>
+               </div>
+               <input type="range" class="form-range" min="-100" max="100" value="10" id="box-horizontal-shadow">
+               <hr />
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6>Vertical Length</h6>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                     <button type="button" class="btn btn-sm btn-primary">-</button>
+                     <span id="box-vertical-shadow-output"
+                        class="btn output-box btn-sm btn-outline-primary">Vertical</span>
+                     <button type="button" class="btn btn-sm btn-primary">+</button>
+                  </div>
+               </div>
+               <input type="range" class="form-range" min="-100" max="100" value="10" id="box-vertical-shadow">
+               <hr />
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6>Blur Radius</h6>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                     <button type="button" class="btn btn-sm btn-primary">-</button>
+                     <span id="box-blur-shadow-output" class="btn output-box btn-sm btn-outline-primary">Blur</span>
+                     <button type="button" class="btn btn-sm btn-primary">+</button>
+                  </div>
+               </div>
+               <input type="range" class="form-range" min="0" max="100" value="0" id="box-blur-shadow">
+               <hr />
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6>Spread Radius</h6>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
+                     <button type="button" class="btn btn-sm btn-primary">-</button>
+                     <span id="box-spread-shadow-output" class="btn output-box btn-sm btn-outline-primary">Spread</span>
+                     <button type="button" class="btn btn-sm btn-primary">+</button>
+                  </div>
+               </div>
+               <input type="range" class="form-range" min="-100" max="100" value="0" id="box-spread-shadow">
+               <hr />
+               <div>
+                  <h6>Shadow Color</h6>
+               </div>
+               <input type="color" value="#333333" class="form-control p-1" id="box-color-shadow">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="container bg-light">
+      <h1><code id="code">box-shadow: 10px 10px 0 0 #333333;</code></h1>
+   </div>
+
+   <script>
+      let box = document.getElementById("box"); // target box
+      let bx = document.getElementById("box-horizontal-shadow"); // horizontal length
+      let by = document.getElementById("box-vertical-shadow"); // vertical length
+      let bb = document.getElementById("box-blur-shadow"); // blur radius
+      let bs = document.getElementById("box-spread-shadow"); // spread radius
+      let bc = document.getElementById("box-color-shadow"); // shadow color
+      let bis = document.getElementById("box-inset-shadow"); // inset shadow
+      let code = document.getElementById("code");
+
+      // horizontal length
+      bx.addEventListener("input", (e) => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${e.target.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset`;
+            document.getElementById("box-horizontal-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${e.target.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset;`;
+         }
+         else {
+            box.style.boxShadow = `${e.target.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value}`;
+            document.getElementById("box-horizontal-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${e.target.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value};`;
+         }
+         bx.value = e.target.value;
+      });
+
+      // vertical length
+      by.addEventListener("input", (e) => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${bx.value}px ${e.target.value}px ${bb.value}px ${bs.value}px ${bc.value} inset`;
+            document.getElementById("box-vertical-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${e.target.value}px ${bb.value}px ${bs.value}px ${bc.value} inset;`;
+         }
+         else {
+            box.style.boxShadow = `${bx.value}px ${e.target.value}px ${bb.value}px ${bs.value}px ${bc.value}`;
+            document.getElementById("box-vertical-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${e.target.value}px ${bb.value}px ${bs.value}px ${bc.value};`;
+         }
+         by.value = e.target.value;
+      });
+
+      // blur radius
+      bb.addEventListener("input", (e) => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${e.target.value}px ${bs.value}px ${bc.value} inset`;
+            document.getElementById("box-blur-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${e.target.value}px ${bs.value}px ${bc.value} inset;`;
+         }
+         else {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${e.target.value}px ${bs.value}px ${bc.value}`;
+            document.getElementById("box-blur-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${e.target.value}px ${bs.value}px ${bc.value};`;
+         }
+         bb.value = e.target.value;
+      });
+
+      // shadow spread
+      bs.addEventListener("input", (e) => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${e.target.value}px ${bc.value} inset`;
+            document.getElementById("box-spread-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${e.target.value}px ${bc.value} inset;`;
+         }
+         else {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${e.target.value}px ${bc.value}`;
+            document.getElementById("box-spread-shadow-output").innerText = `${e.target.value}px`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${e.target.value}px ${bc.value};`;
+         }
+         bs.value = e.target.value;
+      });
+
+      // shadow color
+      bc.addEventListener("input", (e) => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${e.target.value} inset`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${e.target.value} inset;`;
+         }
+         else {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${e.target.value}`;
+            code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${e.target.value};`;
+         }
+         bc.value = e.target.value;
+      });
+
+      // inset shadow
+      bis.addEventListener("change", () => {
+         if (bis.checked == true) {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset`;
+         }
+         else {
+            box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value}`;
+         }
+      });
+
+      function increment(id, tag) {
+         let ele = document.getElementById(id);
+         let minus_btn = ele.previousElementSibling;
+         let plus_btn = ele.nextElementSibling;
+
+         ele.innerText = `${document.getElementById(tag).value}px`;
+
+         minus_btn.addEventListener("click", (e) => {
+            document.getElementById(tag).value = --document.getElementById(tag).value;
+            ele.innerText = `${document.getElementById(tag).value}px`;
+            if (bis.checked == true) {
+               box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset`;
+               code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset;`;
+            }
+            else {
+               box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value}`;
+               code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value};`;
+            }
+         });
+
+         plus_btn.addEventListener("click", (e) => {
+            console.log("before plus ", document.getElementById(tag).value);
+            document.getElementById(tag).value = ++document.getElementById(tag).value;
+            console.log("after plus ", document.getElementById(tag).value);
+            ele.innerText = `${document.getElementById(tag).value}px`;
+            if (bis.checked == true) {
+               box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset`;
+               code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value} inset;`;
+            }
+            else {
+               box.style.boxShadow = `${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value}`;
+               code.innerText = `box-shadow:${bx.value}px ${by.value}px ${bb.value}px ${bs.value}px ${bc.value};`;
+            }
+         });
+      }
+
+      increment("box-horizontal-shadow-output", "box-horizontal-shadow");
+      increment("box-vertical-shadow-output", "box-vertical-shadow");
+      increment("box-blur-shadow-output", "box-blur-shadow");
+      increment("box-spread-shadow-output", "box-spread-shadow");
+   </script>
+
+
+</body>
+
+</html>
