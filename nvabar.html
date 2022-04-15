@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Navbar</title>
+   <style>
+      * {
+         box-sizing: border-box;
+      }
+
+      body {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      a {
+         text-decoration: none;
+         color: inherit;
+      }
+
+      .nav {
+         padding: 0 10px;
+         background-color: aliceblue;
+         border-bottom: 1px solid blueviolet;
+         display: flex;
+         align-items: center;
+      }
+
+      .nav ul {
+         margin: 0;
+         padding: 0;
+         font-size: 1.2rem;
+         list-style: none;
+         display: flex;
+         align-items: center;
+      }
+
+      .nav ul a {
+         padding: 8px 16px;
+         display: inline-block;
+      }
+
+      .nav ul a:hover {
+         background-color: lightblue;
+      }
+
+      .nav .u1,
+      .u2,
+      .u3 {
+         background-color: lightgoldenrodyellow;
+      }
+
+      .nav .u2,
+      .u3 {
+         flex-grow: 2;
+      }
+
+      .nav .u1 {
+         width: 100px;
+         margin-right: 10px;
+         justify-content: center;
+      }
+
+      .nav .u1 li:last-child {
+         display: none;
+      }
+
+      .nav .u2 {
+         font-size: 1.4rem;
+      }
+
+      .nav .u3 {
+         justify-content: flex-end;
+      }
+   </style>
+   <style>
+      @media screen and (min-width:200px) and (max-width:600px) {
+
+         .nav {
+            padding: 0px;
+            background-color: aliceblue;
+            border-bottom: 0px solid blueviolet;
+            display: flex;
+            flex-direction: column;
+            align-items: unset;
+            position: relative;
+         }
+
+         .nav ul {
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+         }
+
+         .nav .u2,
+         .u3 {
+            width: 100%;
+         }
+
+         .nav .u1 {
+            width: 100%;
+            padding: 0 20px;
+            margin-right: 0px;
+            font-size: 3rem;
+            border-bottom: 1px solid blueviolet;
+            justify-content: space-between;
+         }
+
+         .nav .u1 li:last-child {
+            display: block;
+         }
+
+         .nav .u2 {
+            order: 3;
+            display: none;
+            border-right: 1px solid blueviolet;
+            padding: 0px;
+            font-size: 1.4rem;
+            flex-direction: column;
+            width: 75%;
+            height: calc(100vh - 43px);
+            position: absolute;
+            top: 43px;
+            left: 0;
+         }
+
+         .show {
+            display: flex !important;
+            z-index: 99999;
+         }
+
+         /* toogle onclick hambuger icon using javascript  */
+
+         .nav .u2 li {
+            width: 100%;
+         }
+
+         .nav .u2 li a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+         }
+
+         .nav .u2 li a::after {
+            content: "💎";
+         }
+
+         .nav .u2 li a:focus::after {
+            font-size: 20px;
+         }
+
+         .nav .u3 {
+            order: 2;
+            width: 75%;
+            background-color: blueviolet !important;
+            display: none;
+            border-bottom: 1px solid blueviolet;
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: space-evenly;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="nav">
+      <ul class="u1">
+         <li>LOGO</li>
+         <li>🍔</li>
+      </ul>
+      <ul class="u2">
+         <li><a href="javascript:void(null)">Link</a></li>
+         <li><a href="javascript:void(null)">Link</a></li>
+         <li><a href="javascript:void(null)">Link</a></li>
+         <li><a href="javascript:void(null)">Link</a></li>
+      </ul>
+      <ul class="u3">
+         <li><a href="javascript:void(null)">💎</a></li>
+         <li><a href="javascript:void(null)">🧿</a></li>
+         <li><a href="javascript:void(null)">🔑</a></li>
+         <li><a href="javascript:void(null)">🧪</a></li>
+      </ul>
+   </div>
+
+   <script>
+      let hambuger = document.querySelectorAll(".nav .u1 li")[1];
+      let toogle_menu = document.querySelectorAll(".nav .u2")[0];
+      let toogle_menu_2 = document.querySelectorAll(".nav .u3")[0];
+
+      hambuger.addEventListener("click", function () {
+         toogle_menu.classList.toggle("show");
+         toogle_menu_2.classList.toggle("show");
+      });
+   </script>
+
+</body>
+
+</html>
